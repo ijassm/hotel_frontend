@@ -3,6 +3,8 @@ import { CardItem } from "./components/CardItem";
 import { Header } from "./components/Header";
 import { Filter } from "./components/Filter";
 import { Pagination } from "../shared/ui/Pagination";
+import { Form } from "./components/Form";
+import { ModalProvider, useModal } from "./contexts";
 
 const cardData = Array.from({ length: 12 }, (_, i) => ({
   imageUrl:
@@ -16,6 +18,7 @@ const CARDS_PER_PAGE = 4;
 
 export function Home() {
   const [currentPage, setCurrentPage] = useState(1);
+  // const { isOpen, closeModal } = useModal();
 
   const totalPages = Math.ceil(cardData.length / CARDS_PER_PAGE);
   const startIndex = (currentPage - 1) * CARDS_PER_PAGE;
@@ -30,28 +33,33 @@ export function Home() {
   };
 
   return (
-    <main className="flex montserrat max-w-4xl mx-auto my-5 space-y-6 gap-6">
-      <Filter />
-      <main>
-        <Header />
-        <section className="space-y-4">
-          {currentCards.map((card, index) => (
-            <CardItem
-              key={index}
-              imageUrl={card.imageUrl}
-              name={card.name}
-              description={card.description}
-            />
-          ))}
-        </section>
+    <>
+      <Form type="create" />
 
-        <Pagination
-          currentPage={currentPage}
-          totalPages={totalPages}
-          goToNextPage={goToNextPage}
-          goToPrevPage={goToPrevPage}
-        />
+      <main className="flex max-w-4xl mx-auto py-5 space-y-6 gap-6">
+        <Filter />
+        <main>
+          <Header />
+          <section className="space-y-4">
+            {currentCards.map((card, index) => (
+              <CardItem
+                id={`card-item-${index}`}
+                key={index}
+                imageUrl={card.imageUrl}
+                name={card.name}
+                description={card.description}
+              />
+            ))}
+          </section>
+
+          <Pagination
+            currentPage={currentPage}
+            totalPages={totalPages}
+            goToNextPage={goToNextPage}
+            goToPrevPage={goToPrevPage}
+          />
+        </main>
       </main>
-    </main>
+    </>
   );
 }
