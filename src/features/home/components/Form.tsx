@@ -8,6 +8,7 @@ import {
   type HotelFormSchema,
 } from "../validations";
 import { useForm } from "react-hook-form";
+import { useModal } from "../contexts";
 
 interface FormProps {
   type?: "create" | "update";
@@ -19,6 +20,8 @@ export const Form = ({ type = "create" }: FormProps) => {
     type === "create"
       ? "Fill out the form below to create a new hotel listing."
       : "Update the details of your existing hotel listing.";
+
+  const { closeModal } = useModal();
 
   const {
     register,
@@ -54,7 +57,7 @@ export const Form = ({ type = "create" }: FormProps) => {
             <h1 className="text-xl font-semibold text-black mb-0">{title}</h1>
             <p className="text-sm text-gray-500 mt-0">{description}</p>
           </div>
-          <FaWindowClose className="text-gray-500 hover:text-red-500 cursor-pointer text-2xl" />
+          <FaWindowClose className="text-gray-500 hover:text-red-500 cursor-pointer text-2xl" onClick={closeModal} />
         </section>
 
         <section className="my-6">

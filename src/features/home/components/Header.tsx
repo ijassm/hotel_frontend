@@ -1,7 +1,8 @@
-import { Link } from "react-router-dom";
 import { Button, Input } from "../../shared";
+import { useModal } from "../contexts";
 
 export const Header = () => {
+  const { openModal } = useModal();
   return (
     <header className="flex items-center justify-between mb-5">
       <div className="flex max-w-md w-full">
@@ -10,12 +11,12 @@ export const Header = () => {
           placeholder="Search hotels by title"
         />
         <Button className="bg-blue-500 text-white p-2 rounded-l-none">
-         Search
+          Search
         </Button>
       </div>
-      <Link to="/form">
-        <Button variant="primary">Add Hotel</Button>
-      </Link>
+        <Button variant="primary" onClick={openModal}>
+          Add Hotel
+        </Button>
     </header>
   );
 };

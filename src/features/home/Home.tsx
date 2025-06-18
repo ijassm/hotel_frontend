@@ -18,7 +18,7 @@ const CARDS_PER_PAGE = 4;
 
 export function Home() {
   const [currentPage, setCurrentPage] = useState(1);
-  // const { isOpen, closeModal } = useModal();
+  const { isOpen, closeModal } = useModal();
 
   const totalPages = Math.ceil(cardData.length / CARDS_PER_PAGE);
   const startIndex = (currentPage - 1) * CARDS_PER_PAGE;
@@ -34,7 +34,8 @@ export function Home() {
 
   return (
     <>
-      <Form type="create" />
+      
+      {isOpen && <Form type="create" />}
 
       <main className="flex max-w-4xl mx-auto py-5 space-y-6 gap-6">
         <Filter />
