@@ -1,6 +1,7 @@
-import { useParams } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
 import { Button } from "../shared/ui/Button";
+import { IoMdArrowRoundBack } from "react-icons/io";
 
 export function HotelDetail() {
   const { id } = useParams();
@@ -27,9 +28,10 @@ export function HotelDetail() {
     <main className="max-w-2xl mx-auto p-4 space-y-6">
       <section className="relative flex items-center justify-center bg-gray-100 p-4 rounded-md shadow-sm mb-6">
         {/* Back Button on the left */}
-        <Button variant="outline" className="left-2 text-sm absolute">
+        <Link to="/" className="flex items-center gap-2 left-2 text-sm absolute border rounded-md px-4 py-2 hover:text-red-600">
+          <IoMdArrowRoundBack />
           Back
-        </Button>
+        </Link>
 
         {/* Centered Title */}
         <h1 className="text-lg font-semibold text-center">{hotel.name}</h1>

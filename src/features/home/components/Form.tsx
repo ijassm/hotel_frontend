@@ -1,4 +1,5 @@
-import { AiOutlineCloudUpload } from "react-icons/ai";
+import { FaRegFolderClosed } from "react-icons/fa6";
+import { FaWindowClose } from "react-icons/fa";
 import { Button, Input } from "../../shared";
 
 interface FormProps {
@@ -13,66 +14,59 @@ export const Form = ({ type = "create" }: FormProps) => {
       : "Update the details of your existing hotel listing.";
 
   return (
-    <main className="max-w-xl mx-auto">
-      <main>
-        <Button variant="outline">Back to Home</Button>
-        {title}
-      </main>
-      <section className="flex justify-center items-center h-screen">
-        <main className="m-10 border border-gray-400 rounded-xl p-6 w-full max-w-xl">
-          {/* Form Title And Description */}
-          <section>
+    <main className="flex justify-center items-center h-screen bg-gray-100">
+      <section className="m-10 border border-gray-400 rounded-xl p-6 w-full max-w-xl bg-white">
+        {/* Form Title And Description */}
+        <section className="flex items-center justify-between mb-6">
+          <div>
             <h1 className="text-xl font-semibold text-black mb-0">{title}</h1>
             <p className="text-sm font-normal text-gray-500 mt-0">
               {description}
             </p>
-          </section>
+          </div>
+          <FaWindowClose className="text-gray-500 hover:text-red-500 cursor-pointer transition-colors duration-200 text-2xl" />
+        </section>
 
-          {/* Form Image Upload */}
-          <section className="my-6">
-            <div className="border-2 border-dashed border-gray-300 rounded-lg text-center cursor-pointer flex flex-col items-center justify-center transition-colors duration-300 p-6">
-              <AiOutlineCloudUpload className="w-[50px] h-[50px] mb-3" />
-              <h4 className="text-base font-semibold text-gray-800 mb-1">
-                Upload Hotel Image
-              </h4>
-              <p className="text-xs text-gray-500">
-                Click or drag and drop to upload an image
-              </p>
-            </div>
-          </section>
+        {/* Form Image Upload */}
+        <section className="my-6">
+          <div className="border-2 border-dashed border-gray-300 rounded-lg text-center cursor-pointer flex flex-col items-center justify-center transition-colors duration-300 p-6">
+            <FaRegFolderClosed className="w-[50px] h-[50px] mb-3" />
+            <h4 className="text-base font-semibold text-gray-800 mb-1">
+              Upload Hotel Image
+            </h4>
+            <p className="text-xs text-gray-500">
+              Click or drag and drop to upload an image
+            </p>
+          </div>
+        </section>
 
-          {/* Form InputFields */}
-          <section className="space-y-4">
-            <div>
-              <Input placeholder="Enter hotel name" required />
-            </div>
-            <div>
-              <textarea
-                placeholder="Write a short description..."
-                required
-                className="w-full p-3 border border-gray-300 rounded-md text-sm focus:border-blue-500 outline-none resize-vertical font-[inherit] leading-relaxed"
-                rows={4}
-              />
-            </div>
-            <div>
-              <Input
-                placeholder="Enter hotel location"
-                onFocus={() => console.log("Hotel Location")}
-                required
-              />
-            </div>
-            <div>
-              <Input placeholder="Enter hotel price" required />
-            </div>
-          </section>
+        {/* Form InputFields */}
+        <section className="space-y-4">
+          <div>
+            <Input placeholder="Enter hotel name" />
+          </div>
+          <div>
+            <textarea
+              placeholder="Write a short description..."
+              className="w-full p-3 border border-gray-300 rounded-md focus:border-blue-500 outline-blue-600 resize-vertical leading-relaxed"
+              rows={4}
+            />
+          </div>
+          <div className="flex gap-4">
+            <Input placeholder="Enter hotel latitude" />
+            <Input placeholder="Enter hotel longitude" />
+          </div>
+          <div>
+            <Input placeholder="Enter hotel price" />
+          </div>
+        </section>
 
-          {/* Form Submit Btn */}
-          <section>
-            <Button className="w-full mt-10 mb-2 py-3 px-5 text-white text-base rounded-lg bg-blue-600 hover:opacity-90 transition-all">
-              Submit
-            </Button>
-          </section>
-        </main>
+        {/* Form Submit Btn */}
+        <section>
+          <Button className="w-full mt-10 mb-2 py-3 px-5 text-white text-base rounded-lg bg-blue-600 hover:opacity-90 transition-all">
+            Submit
+          </Button>
+        </section>
       </section>
     </main>
   );

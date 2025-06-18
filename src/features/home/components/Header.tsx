@@ -1,5 +1,5 @@
+import { Link } from "react-router-dom";
 import { Button, Input } from "../../shared";
-// import { Button } from "../../shared/ui/Button";
 
 export const Header = () => {
   return (
@@ -10,10 +10,12 @@ export const Header = () => {
           placeholder="Search hotels by title"
         />
         <Button className="bg-blue-500 text-white p-2 rounded-l-none">
-          Search
+         Search
         </Button>
       </div>
-      <Button variant="primary">Add Hotel</Button>
+      <Link to="/form">
+        <Button variant="primary">Add Hotel</Button>
+      </Link>
     </header>
   );
 };
